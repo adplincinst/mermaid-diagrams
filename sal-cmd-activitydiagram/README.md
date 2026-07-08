@@ -75,7 +75,12 @@ deactivate salCli
 salUser->>salCli: sal run
 activate salCli
 salCli->>runSubCmd: run
-runSubCmd->>runSubCmd: create instance of SALEntryPoint
+runSubCmd->>salmoduleOntologySubCmd: reference
+salmoduleOntologySubCmd-->>runSubCmd: :SALEntryPoint
+runSubCmd->>runSubCmd: create instance of :SALEntryPoint
+runSubCmd->>runSubCmd: set env SAL_NP_INSTANCE to :SALEntryPoint instance
+runSubCmd->>salmoduleRunSubCmd: salmodule run 
+
 deactivate salCli
 
 ```

@@ -14,6 +14,10 @@ participant salCli as sal
 participant initSubCmd as init
 participant validateSubCmd as validate
 participant buildSubCmd as build
+participant runSubCmd as run
+participant salmoduleSubCmd as salmodule
+participant salmoduleRunSubCmd as salmodule run
+participant salmoduleOntologySubCmd as salmodule ontology
 participant localGitRepo as Local Git Repository
 participant iceberg as Apache Iceberg 
 salUser->>salCli: sal
@@ -56,7 +60,6 @@ loop For Each *.(ttl|turtle|jsonld|json)
         buildSubCmd-->>salUser: stderr: check in file
 
     end
-
 end
 buildSubCmd->>validateSubCmd: validate
 validateSubCmd-->>buildSubCmd: project graph
@@ -65,7 +68,14 @@ alt Has previous snapshot?
    buildSubCmd->>buildSubCmd: diff current/previous snapshot project triples
    buildSubCmd->>iceberg: persist deltas
 end
-buildSubCmd->>salUser: success
+buildSubCmd-->>salUser: success
+deactivate salCli
+
+
+salUser->>salCli: sal run
+activate salCli
+salCli->>runSubCmd: run
+runSubCmd->>runSubCmd: create instance of SALEntryPoint
 deactivate salCli
 
 ```

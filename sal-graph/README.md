@@ -47,7 +47,7 @@ classDef cmd fill:#f8d7da,stroke:#f5c6cb,color:#721c24;
 
     dot-sal-data-dir -->|contains| sal-runtime-artifacts
     subgraph sal-runtime-artifacts[SAL Runtime Artifacts]
-        caddr-media-files[Content Addressable Files &lpar;sha-256&rpar;]
+        caddr-media-files[Content Addressable Files]
         apache-iceberg-files[Apache Iceberg data files]
     end
 

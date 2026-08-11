@@ -73,7 +73,7 @@ classDef cmd fill:#f8d7da,stroke:#f5c6cb,color:#721c24;
     oci-image -->|embodiment of| sal-data-product
     salmodule-docker-image-->|implements cli spec| salmodule-spec
     subgraph salmodule-spec[SAL Module CLI Specification]
-         salmodule-spec-cmd-salmodule[salmodule &lpar;command&rpar;]
+         salmodule-spec-cmd-salmodule[salmodule]
          salmodule-spec-cmd-salmodule -->|subcommand| salmodule-spec-cmd-ontology[ontology]
 
          salmodule-spec-cmd-salmodule -->|subcommand| salmodule-spec-cmd-run[run]
@@ -85,7 +85,7 @@ classDef cmd fill:#f8d7da,stroke:#f5c6cb,color:#721c24;
     managed-artifacts -->|contain|rdf-entities[RDF Entities]
     rdf-entities -->|base IRI| sal-project-base-iri
     rdf-entities -->|should have one or more| salmodule-task-subclass-instance[SAL Module Task Subclass Instance]
-    salmodule-task-subclass-instance -->|instantiates| salmodule-task-subclass-definition[SAL Module Task Subclass Definition&lpar;s&rpar;]
+    salmodule-task-subclass-instance -->|instantiates| salmodule-task-subclass-definition[SAL Module Task Subclass Definition-s]
     salmodule-uri -->|based on| git-remote-url
     salmodule-uri -->|references| salmodule-remote-git-repo
     subgraph salmodule-remote-git-repo[SAL Module Remote Git Repository]
@@ -93,16 +93,16 @@ classDef cmd fill:#f8d7da,stroke:#f5c6cb,color:#721c24;
          salmodule-dockerfile[Dockerfile]
          salmodule-dockerfile -->|builds to| salmodule-docker-image
     end
-    http-uri -->|references| external-ontology[Ontologies &lpar;RDF Schemas&rpar;]
+    http-uri -->|references| external-ontology[Ontologies]
     oci-uri -->|references| other-sal-data-product[Other SAL Data Product]
     sal-validate-cmd -->|validates| managed-artifacts
     subgraph accepted-src-file-types[Source File Types]
-        turtle-filetype[Turtle &lpar;.ttl&rpar; files]
-        jsonld-filetype[JSON-LD &lpar;.jsonld&rpar; files]
+        turtle-filetype[Turtle/.ttl files]
+        jsonld-filetype[JSON-LD/.jsonld files]
     end
     sal-project-src-files -->|reference| accepted-proto-schemes
     subgraph accepted-proto-schemes[Accepted IRI Protocol Schemes]
-        http-uri[http&lpar;s&rpar;://]
+        http-uri[http:// or https://]
         salmodule-uri[salmodule://]
         oci-uri[oci://]
     end

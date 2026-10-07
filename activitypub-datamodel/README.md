@@ -4,7 +4,7 @@
 classDiagram
     direction TB
 
-    class as:Object {
+    class "as:Object" {
         +id: IRI
         +type
         +name

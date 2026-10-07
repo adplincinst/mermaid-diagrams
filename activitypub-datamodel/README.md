@@ -4,7 +4,7 @@
 classDiagram
     direction TB
 
-    class "as:Object" {
+    class as#colon;Object {
         +id: IRI
         +type
         +name

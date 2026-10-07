@@ -4,6 +4,8 @@
 classDiagram
     direction TB
 
+    
+
     class `as:Object` {
         +id: IRI
         +type
@@ -35,8 +37,19 @@ classDiagram
         +duration
         
     }
+    
+     class `as:Link` {
+        +href
+        +rel
+        +mediaType
+        +name
+        +hreflang
+        +height
+        +width
+        +preview
+    }
 
-    class Activity {
+    class `as:Activity` {
         +actor
         +object
         +target
@@ -45,7 +58,7 @@ classDiagram
         +instrument
     }
 
-    class IntransitiveActivity {
+    class `as:IntransitiveActivity` {
         +actor
         +target
         +result
@@ -53,7 +66,9 @@ classDiagram
         +instrument
     }
 
-    class Collection {
+    `as:Activity` <|-- `as:IntransitiveActivity`
+
+    class `as:Collection` {
         +totalItems
         +current
         +first
@@ -61,25 +76,87 @@ classDiagram
         +items
     }
 
-    class OrderedCollection {
-        +orderedItems
+    class `as:OrderedCollection` {
+       +orderedItems
     }
 
-    class CollectionPage {
+    class `as:CollectionPage` {
         +partOf
         +next
         +prev
     }
 
-    class OrderedCollectionPage
-
-    class Link {
-        +href
-        +rel
-        +mediaType
-        +name
-        +hreflang
+    class `as:OrderedCollectionPage` {
+        +startIndex
     }
+
+
+  
+
+    class `as:Accept` 
+    `as:Activity` <|-- `as:Accept` 
+    class `as:TentativeAccept`
+    `as:Accept` <|-- `as:TentativeAccept` 
+     class `as:Add`
+     `as:Activity` <|-- `as:Add`
+     class `as:Arrive` 
+     `as:IntransitiveActivity` <|-- `as:Arrive`
+     class `as:Create`
+     `as:Activity` <|-- `as:Create`
+     class `as:Delete`
+     `as:Activity` <|-- `as:Delete`
+    class `as:Follow`
+     `as:Activity` <|-- `as:Follow`
+     class `as:Follow`
+     `as:Activity` <|-- `as:Follow`
+     class `as:Ignore`
+     `as:Activity` <|-- `as:Ignore`
+    class `as:Join`
+     `as:Activity` <|-- `as:Join`
+    class `as:Leave`
+     `as:Activity` <|-- `as:Leave`
+     class `as:Like`
+     `as:Activity` <|-- `as:Like`
+    class `as:Offer`
+     `as:Activity` <|-- `as:Offer`
+     class `as:Invite`
+     `as:Activity` <|-- `as:Invite`
+    class `as:Reject`
+     `as:Activity` <|-- `as:Reject`
+    class `as:TentativeReject`
+     `as:Reject` <|-- `as:TentativeReject`
+    class `as:Remove`
+     `as:Activity` <|-- `as:Remove`
+    class `as:Undo`
+     `as:Activity` <|-- `as:Undo`
+    class `as:Update`
+     `as:Activity` <|-- `as:Update`
+    class `as:View`
+     `as:Activity` <|-- `as:View`
+     class `as:Listen`
+     `as:Activity` <|-- `as:Listen`
+     class `as:Read`
+     `as:Activity` <|-- `as:Read`
+    class `as:Move`
+     `as:Activity` <|-- `as:Move`
+    class `as:Travel`
+     `as:IntransitiveActivity` <|-- `as:Travel`
+     class `as:Announce`
+     `as:Activity` <|-- `as:Announce`
+    class `as:Block`
+     `as:Ignore` <|-- `as:Block`
+    class `as:Flag`
+     `as:Activity` <|-- `as:Flag`
+     class `as:Dislike`
+     `as:Activity` <|-- `as:Dislike`
+     class `as:Question` {
+        +oneOf
+        +anyOf
+        +closed
+     }
+     `as:IntransitiveActivity` <|-- `as:Question`
+     
+      
 
     class Actor {
         <<conceptual>>
@@ -108,12 +185,13 @@ classDiagram
     class Relationship
     class Tombstone
 
-    Object <|-- Activity
-    Object <|-- IntransitiveActivity
-    Object <|-- Collection
-    Collection <|-- OrderedCollection
-    Collection <|-- CollectionPage
-    OrderedCollection <|-- OrderedCollectionPage
+    `as:Object` <|-- `as:Activity`
+    `as:Activity` <|-- `as:IntransitiveActivity`
+    `as:Object` <|-- `as:Collection`
+    `as:Collection` <|-- `as:OrderedCollection`
+    `as:Collection` <|-- `as:CollectionPage`
+    `as:OrderedCollection` <|-- `as:OrderedCollectionPage`
+    `as:CollectionPage` <|-- `as:OrderedCollectionPage`
 
     Object <|-- Actor
     Actor <|-- Person

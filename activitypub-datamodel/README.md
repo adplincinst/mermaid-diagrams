@@ -158,6 +158,8 @@ classDiagram
      
       
 
+    %% Actor Types
+
     class Actor {
         <<conceptual>>
         +inbox
@@ -174,16 +176,39 @@ classDiagram
     class Organization
     class Service
 
-    class Note
-    class Article
-    class Document
-    class Image
+    %% Object Types
+    class `as:Note`
+    class `as:Article` 
+    class `as:Audio`
+    class `as:Page`
     class Video
-    class Event
-    class Place
-    class Profile
-    class Relationship
-    class Tombstone
+    class `as:Document`
+    class `as:Image`
+    class `as:Video`
+    class `as:Event`
+    class `as:Place` {
+        +accuracy
+        +altitude
+        +latitude
+        +longitude
+        +radius
+        +units
+    }
+    class `as:Profile` {
+        +describes
+    }
+    class `as:Relationship` {
+        +subject
+        +object
+        +relationship
+    }
+    class `as:Tombstone` {
+        +formerType
+        +deleted
+    }
+
+    %% Link Types
+    class `as:Mention` 
 
     `as:Object` <|-- `as:Activity`
     `as:Activity` <|-- `as:IntransitiveActivity`
@@ -193,27 +218,31 @@ classDiagram
     `as:OrderedCollection` <|-- `as:OrderedCollectionPage`
     `as:CollectionPage` <|-- `as:OrderedCollectionPage`
 
-    Object <|-- Actor
-    Actor <|-- Person
-    Actor <|-- Application
-    Actor <|-- Group
-    Actor <|-- Organization
-    Actor <|-- Service
+    `as:Object` <|-- `as:Actor`
+    `as:Actor` <|-- `as:Person`
+    `as:Actor` <|-- `as:Application`
+    `as:Actor` <|-- `as:Group`
+    `as:Actor` <|-- `as:Organization`
+    `as:Actor` <|-- `as:Service`
 
-    Object <|-- Note
-    Object <|-- Article
-    Object <|-- Document
-    Document <|-- Image
-    Document <|-- Video
-    Object <|-- Event
-    Object <|-- Place
-    Object <|-- Profile
-    Object <|-- Relationship
-    Object <|-- Tombstone
+    `as:Object` <|-- `as:Note`
+    `as:Object` <|-- `as:Article`
+    `as:Object` <|-- `as:Document`
+    `as:Document` <|-- `as:Image`
+    `as:Document` <|-- `as:Video`
+    `as:Document` <|-- `as:Audio`
+    `as:Document` <|-- `as:Page`
+    `as:Object` <|-- `as:Event`
+    `as:Object` <|-- `as:Place`
+    `as:Object` <|-- `as:Profile`
+    `as:Object` <|-- `as:Relationship`
+    `as:Object` <|-- `as:Tombstone`
 
-    Activity --> Object : object
-    Activity --> Actor : actor
-    Object --> Actor : attributedTo
-    Object --> Collection : replies
+    `as:Link` <|-- `as:Mention` 
+
+    `as:Activity` --> `as:Object` : object
+    `as:Activity` --> `as:Actor` : actor
+    `as:Object` --> `as:Actor` : attributedTo
+    `as:Object` --> `as:Collection` : replies
 
 ```

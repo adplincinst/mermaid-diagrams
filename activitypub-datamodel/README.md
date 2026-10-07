@@ -160,7 +160,7 @@ classDiagram
 
     %% Actor Types
 
-    class Actor {
+    class `as:Actor` {
         <<conceptual>>
         +inbox
         +outbox
@@ -170,11 +170,11 @@ classDiagram
         +preferredUsername
     }
 
-    class Person
-    class Application
-    class Group
-    class Organization
-    class Service
+    class `as:Person`
+    class `as:Application`
+    class `as:Group`
+    class `as:Organization`
+    class `as:Service`
 
     %% Object Types
     class `as:Note`

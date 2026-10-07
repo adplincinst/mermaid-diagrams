@@ -4,21 +4,36 @@
 classDiagram
     direction TB
 
-    class Object {
+    class as:Object {
         +id: IRI
         +type
         +name
-        +content
-        +summary
-        +url
+        +attachment
         +attributedTo
         +audience
-        +to
-        +cc
-        +bto
-        +bcc
+        +content
+        +context
+        +endTime
+        +generator
+        +icon
+        +image
+        +inReplyTo
+        +location
+        +preview
         +published
+        +replies
+        +startTime
+        +summary
+        +tag
         +updated
+        +url
+        +to
+        +bto
+        +cc
+        +bcc
+        +mediaType
+        +duration
+        
     }
 
     class Activity {

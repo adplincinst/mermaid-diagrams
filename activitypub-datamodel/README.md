@@ -181,7 +181,7 @@ classDiagram
     class `as:Article` 
     class `as:Audio`
     class `as:Page`
-    class Video
+
     class `as:Document`
     class `as:Image`
     class `as:Video`
@@ -240,9 +240,5 @@ classDiagram
 
     `as:Link` <|-- `as:Mention` 
 
-    `as:Activity` --> `as:Object` : object
-    `as:Activity` --> `as:Actor` : actor
-    `as:Object` --> `as:Actor` : attributedTo
-    `as:Object` --> `as:Collection` : replies
-
+    
 ```
